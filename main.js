@@ -35,7 +35,7 @@ function daemon_server() {
             board.close();
         }
     }, 5000);
-    
+
 }
 
 daemon_server();
@@ -52,21 +52,21 @@ require('webduino-bit-module-led-matrix')(webduino);
 require('./webduino-bit-module-test')(webduino);
 
 function main() {
-  console.log('hello world');
+    console.log('hello world');
 
-  board.samplingInterval = 250;
-  const test = new webduino.module.test('this is test');
-  test.AQI('dongguan', function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      // console.log(body);
-      if (body['reason'] == 'SUCCESSED!') {
-        console.log(body['result'][0]['citynow']);
-        var aqi = body['result'][0]['citynow']['AQI'];
-        board.samplingInterval = 250;
-        const matrix = new webduino.module.Matrix(board, 4, 25);
-        matrix.setString(' AQI-' + aqi, '#00cccc', 1);
-      }
-    }
-  });
+    board.samplingInterval = 250;
+    const test = new webduino.module.test('this is test');
+    test.AQI('dongguan', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            // console.log(body);
+            if (body['reason'] == 'SUCCESSED!') {
+                console.log(body['result'][0]['citynow']);
+                var aqi = body['result'][0]['citynow']['AQI'];
+                board.samplingInterval = 250;
+                const matrix = new webduino.module.Matrix(board, 4, 25);
+                matrix.setString(' AQI-' + aqi, '#00cccc', 1);
+            }
+        }
+    });
 
 }

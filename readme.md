@@ -37,7 +37,9 @@
 
 ### 一个基础的代码
 
-```js
+以下代码在 `demo-0.js` 文件中。
+
+```javascript
 'use strict';
 // 获取调用的依赖 webduino-js 库
 var webduino = require('webduino-js');
@@ -98,8 +100,6 @@ board.on(webduino.BoardEvent.DISCONNECT, function () {
 
 在连接过程中，如果出现 `board disconnect` 则表示板子断开或服务器断开，应检查是哪一端断开，并且能在 `board  before disconnect` 的时候，再决定，是断开还是检查后恢复连接。
 
-
-
 现在我们已经知道怎么开始连接我们板子的信息了。
 
 根据代码可以知道四种基本连接情况，分为以下四种事件触发。
@@ -159,13 +159,15 @@ function exit(){
 
 ```
 
+以上代码在 `demo-1.js` 文件中。
+
 此时你也就只需要关注 main 和 exit 函数即可。
 
 ### 检查硬件基础功能
 
 假设连接成功后，则试着操作一下硬件，确保与硬件连接的通路都正常，找一个 LED 来核对一下吧。
 
-有如下代码：(在先前提供的函数之下)
+有如下代码：(以下代码在 `demo-2.js` 文件中)
 
 ```javascript
 
@@ -185,7 +187,7 @@ function exit(){
 
 那么就简单拓展一下，添加更多引脚（25、33）来设置多个 LED，且不同时刻运行的跑马灯效果。
 
-则代码如下：
+则代码如下：（以下代码在 `demo-3.js` 文件中）
 
 ```javascript
 function led_bink(led_no){
@@ -244,19 +246,21 @@ board.once(webduino.BoardEvent.READY, (board) => {
 ```javascript
 require('webduino-bit-module-led-matrix')(webduino); // 引入库到 webduino 的核心里
 
-function main(){
-  console.log('hello world');
+function main() {
+    console.log('hello world');
 
-  board.samplingInterval = 250;
-  const matrix = new webduino.module.Matrix(board, 4, 25); // 配置 Bit 版型的 Led Matrix 对应引脚。
-  matrix.setCharacter('1', '#ffff66'); // 显示单个字符
-  matrix.setString('Hello the world.', '#ff0000', 1); // 显示字符串，可以从 blockly 里中获取得到对应的代码。
+    board.samplingInterval = 250;
+    const matrix = new webduino.module.Matrix(board, 4, 25); // 配置 Bit 版型的 Led Matrix 对应引脚。
+    matrix.setCharacter('1', '#ffff66'); // 显示单个字符
+    matrix.setString('Hello the world.', '#ff0000', 1); // 显示字符串，可以从 blockly 里中获取得到对应的代码。
 }
 
-function exit(){
-  console.log('program exit');
+function exit() {
+    console.log('program exit');
 }
 ```
+
+以上代码在 `demo-4.js` 文件中。
 
 运行后会出现白色的 1 表示运行成功，最后，测试模块的时候要尽可能简单纯粹，减少问题出现的变量。
 
@@ -468,7 +472,7 @@ if (!error && response.statusCode == 200) {
 }
 ```
 
-通过以上代码的解析，我们可以得到以下结果。
+通过以上代码（在 api.js 文件）的解析，我们可以得到以下结果。
 
 ![air_result](image/air_result.png)
 
@@ -527,7 +531,7 @@ function main() {
 
 现在我们已经可以控制板子了，但板子的情况我们要如何得知呢？
 
-这将用到板子上的两个按键来反馈给上层了，这时候也同前几节的方式应用拓展模块[webduino-bit-module-button](https://github.com/webduinoio/webduino-bit-module-button)，则有如下用法。
+这将用到板子上的两个按键来反馈给上层了，这时候也同前几节的方式应用拓展模块 [webduino-bit-module-button](https://github.com/webduinoio/webduino-bit-module-button)，使用 `npm install webduino-bit-module-button` 安装拓展模块，则有如下用法。
 
 #### Usage
 
@@ -550,7 +554,26 @@ board.once(webduino.BoardEvent.READY, (board) => {
 });
 ```
 
-我相信这一次，你也应该很快就会用起来了吧，需要注意的地方是`btnA.on("pressed", () => console.log('pressed'));`，这是一个匿名函数`() => xxxx();` 这意味着在任何时候，只底层满足了这个条件反馈给顶层了，顶层将会在任何时候都有可能触发执行 `console.log('pressed')` 函数，因为 JS 是异步事件驱动的，虽然这章的代码我并没有测试和演示，但我想，经过了前面的使用方式，这里对你来说应该不是什么大难题，对吧？
+我相信这一次，你也应该很快就会用起来了吧，需要注意的地方是`btnA.on("pressed", () => console.log('pressed'));`，这是一个匿名函数`() => xxxx();` 这意味着在任何时候，只底层满足了这个条件反馈给顶层了，顶层将会在任何时候都有可能触发执行 `console.log('pressed')` 函数，因为 JS 是异步事件驱动的，虽然这章的代码并没有办法截图演示，但我想，经过了前面的使用方式，这里对你来说应该不是什么大难题，对吧？
+
+```javascript
+
+require('webduino-bit-module-button')(webduino);
+
+function main() {
+    console.log('hello world');
+    
+    board.samplingInterval = 250;
+    const btnA = new webduino.module.Button(board, board.getDigitalPin(35), webduino.module.Button.PULL_UP);
+    btnA.on("pressed", () => console.log('pressed'));
+}
+
+function exit() {
+    console.log('program exit');
+}
+```
+
+以上代码提供在 demo-5.js 文件。
 
 ### 进行可靠性再封装
 
