@@ -2,6 +2,14 @@
 
 [TOC]
 
+## 我想做什么？
+
+我想做一个彻底云端化的物联网设备，可以时刻反馈我想要的数据，比如说，让设备实时显示给我，指定城市的空气质量指数，又或是天气预报之类的。
+
+让它丢在家里的桌上，给老人家没事就看一下现在外面的情况，或是看看现在的空气质量，现在适不适合出门什么的。
+
+于是我基于这个 Webduino-Bit 的固件来实现我的想法，通过 Node.js 的服务端方式来实现一个持续运行我的 JavaScript 物联网设备。
+
 ## 准备材料
 
 - `一台 Windows 电脑`
@@ -447,7 +455,7 @@ request({
     json: true,
     url: 'http://web.juhe.cn:8080/environment/air/cityair?' + require('querystring').stringify({
         city: 'dongguan', // 东莞
-        key: "dbfaf7fba9ff2a254300fa59893be5f8" // 私人密钥
+        key: "dbfaf7fba9ff2a254300fa59893be5f8" // 私人密钥，可以自己去申请。
     }),
 }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
@@ -459,6 +467,14 @@ request({
 这端代码所用的 API 是通过从 [聚合数据平台](https://www.juhe.cn/myData) 提供的接口得来，如下图：
 
 ![all_data_api.png](image/all_data_api.png)
+
+像我拿一个空气质量的来测试一下。
+
+![air_api.png](image/air_api.png)
+
+测试效果如下，确认可行了，就把这段路径提取到自己的程序中，当然你也可以直接在浏览器中访问获取数据。
+
+![test_api.png](image/test_api.png)
 
 它是一些个人免费使用的接口，此外也同样可以使用其他的 API 平台，而我仅是借此实例简单说明如何操作。
 

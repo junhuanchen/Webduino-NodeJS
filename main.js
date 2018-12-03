@@ -34,7 +34,7 @@ function daemon_server() {
             console.log('connecting board fail');
             board.close();
         }
-    }, 5000);
+    }, 2500);
 
 }
 
@@ -46,13 +46,29 @@ setInterval(function () {
         console.log("try re-connecting......");
         daemon_server();
     }
-}, 10000);
+}, 5000);
 
 require('webduino-bit-module-led-matrix')(webduino);
 require('./webduino-bit-module-test')(webduino);
 
+function led_bink(led_no) {
+    var led = new webduino.module.Led(board, board.getDigitalPin(led_no));
+    led.blink(500);
+    console.log('blink led ' + led_no);
+}
+
 function main() {
     console.log('hello world');
+
+    setTimeout(function () {
+        led_bink(18);
+    }, 1000);
+    setTimeout(function () {
+        led_bink(32);
+    }, 1500);
+    setTimeout(function () {
+        led_bink(33);
+    }, 2000);
 
     board.samplingInterval = 250;
     const test = new webduino.module.test('this is test');
