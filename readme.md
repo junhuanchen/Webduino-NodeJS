@@ -23,7 +23,7 @@
    5. Device PWD : 板子自建的热点密码
    6. MQTT Server : 选择一个服务器，在国内就选择 China，在国外就选择 Global。
    7. 确认了 SUBMIT 即可。
-6. 我的配置如下 http://192.168.4.1/ap/tgoffice/tu9u2017/bitd3d8d/bit2244/12345678/china`
+6. 我的配置如下 http://192.168.4.1/ap/xxxxxx/xxxxxx/bitd3d8d/bit2244/12345678/china`
 7. 之后板子会滴叫一声，此时重新进入系统，面板滚动灯完毕后进入系统，如果灯面板在闪烁，则说明，没有连接上服务器，此时检查网络连接，并跳回 4，重新检查配置。
 8. 安装 [NodeJs v8.9.4](https://nodejs.org/en/blog/release/v8.9.4/)
 9. 确保 cmd 下运行的 node -v 等于 v8.9.4，说明 nodejs 已经安装完成。
