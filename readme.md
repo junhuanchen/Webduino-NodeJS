@@ -16,7 +16,7 @@
 3. 解压到文件夹，进入其中，先运行`AutoErase.exe`再运行`AutoFlashWebduino.exe`，具体使用方法点此查看[Auto Flash工具](https://github.com/BPI-STEAM/BPI-BIT-WebDuino/wiki#auto-flash%E5%B7%A5%E5%85%B7)。
 4. 连接此处的 Bit 板子发射的热点，名称与板子滚动显示的一致，电脑扫描后连入其中，并打开`192.168.4.1`
 5. 配置项目有如下
-   1. WiFi SSID : 周围可上网的 WIFI 热点名称
+   1. WiFi SSID : 周围可上网的 WIFI 热点名称（一定是要2.4Ghz的WIFI热点）
    2. WiFi PWD : 周围可上网的 WIFI 热点密码
    3. Device ID : **bitd3d8d** 板子自动生成，需要额外记录下来
    4. Device SSID : 板子自建的热点名称
