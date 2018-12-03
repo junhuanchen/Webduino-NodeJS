@@ -10,6 +10,8 @@
 
 于是本文基于这个 Webduino-Bit 的固件来实现我的想法，通过 Node.js 的服务端方式来实现一个持续运行的 JavaScript 物联网设备。
 
+（其实就是详细介绍一下怎么用 NodeJS 开发 webduino 软件了XD）
+
 ## 准备材料
 
 - `一台 Windows 电脑`
